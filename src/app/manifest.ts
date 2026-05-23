@@ -4,13 +4,14 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'LeetCode Local',
     short_name: 'LC',
-    description: 'Local LeetCode platform with JavaScript & TypeScript problems',
+    description: 'Local LeetCode platform with JavaScript & TypeScript problems for interview prep',
     start_url: '/',
     scope: '/',
     display: 'standalone',
     orientation: 'portrait-primary',
     theme_color: '#0f172a',
-    background_color: '#ffffff',
+    background_color: '#0f172a',
+    prefer_related_applications: false,
     icons: [
       {
         src: '/icon-192.png',
@@ -25,18 +26,19 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: 'any',
       },
       {
-        src: '/icon-192-maskable.png',
-        sizes: '192x192',
+        src: '/apple-icon.png',
+        sizes: '180x180',
         type: 'image/png',
-        purpose: 'maskable',
-      },
-      {
-        src: '/icon-512-maskable.png',
-        sizes: '512x512',
-        type: 'image/png',
-        purpose: 'maskable',
+        purpose: 'any',
       },
     ],
-    categories: ['education', 'productivity'],
+    screenshots: [
+      {
+        src: '/opengraph-image.png',
+        sizes: '1200x630',
+        type: 'image/png',
+      },
+    ],
+    categories: ['education', 'productivity', 'reference'],
   }
 }
