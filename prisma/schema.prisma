@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Problem {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique
+  title       String
+  frontendId  String?  // Problem number (1, 2, 3...) from LeetCode
+  difficulty  String   // "Easy" | "Medium" | "Hard"
+  acRate      Float?   // Acceptance rate percentage (0-100)
+  description String   // Markdown format
+  tags        String   // JSON array string
+  companies   String   // JSON array string
+  starterCode String   // JS/TS starter code
+  testCases   String   // JSON: [{input, expected}]
+  solution    String?  // Complete solution
+  editorial   String?  // Markdown editorial
+  submissions Submission[]
+  progress    Progress?
+}
+
+model Submission {
+  id        Int      @id @default(autoincrement())
+  problemId Int
+  problem   Problem  @relation(fields: [problemId], references: [id], onDelete: Cascade)
+  code      String
+  language  String   // "javascript" | "typescript"
+  status    String   // "Accepted" | "Wrong Answer" | "Runtime Error" | "Time Limit Exceeded"
+  runtime   Int?     // ms
+  createdAt DateTime @default(now())
+}
+
+model Progress {
+  problemId Int     @id
+  problem   Problem @relation(fields: [problemId], references: [id], onDelete: Cascade)
+  status    String  // "solved" | "attempted" | "todo"
+  updatedAt DateTime @updatedAt
+}
