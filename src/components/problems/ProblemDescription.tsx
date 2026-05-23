@@ -22,6 +22,24 @@ const difficultyColors = {
   Hard: 'error',
 } as const
 
+function parseDescription(text: string) {
+  const examplesMatch = text.match(/(##?\s*Examples?\s*\n[\s\S]*?)(?=##?\s*Constraints?|$)/i)
+  const constraintsMatch = text.match(/(##?\s*Constraints?\s*\n[\s\S]*?)$/i)
+
+  const examplesSection = examplesMatch ? examplesMatch[1] : ''
+  const constraintsSection = constraintsMatch ? constraintsMatch[1] : ''
+
+  let mainText = text
+  if (examplesSection) mainText = mainText.replace(examplesSection, '')
+  if (constraintsSection) mainText = mainText.replace(constraintsSection, '')
+
+  return {
+    main: mainText.trim(),
+    examples: examplesSection.trim(),
+    constraints: constraintsSection.trim(),
+  }
+}
+
 export function ProblemDescription({
   title,
   difficulty,
@@ -31,7 +49,11 @@ export function ProblemDescription({
   editorial,
   solution,
 }: ProblemDescriptionProps) {
-  const descriptionHtml = md.render(description)
+  const { main, examples, constraints } = parseDescription(description)
+
+  const mainHtml = md.render(main)
+  const examplesHtml = examples ? md.render(examples) : ''
+  const constraintsHtml = constraints ? md.render(constraints) : ''
   const editorialHtml = editorial ? md.render(editorial) : ''
 
   return (
@@ -72,13 +94,43 @@ export function ProblemDescription({
       <GlassCard variant="subtle">
         <div
           className="prose prose-invert max-w-none text-slate-200"
-          dangerouslySetInnerHTML={{ __html: descriptionHtml }}
+          dangerouslySetInnerHTML={{ __html: mainHtml }}
         />
       </GlassCard>
 
+      {examplesHtml && (
+        <div>
+          <h2 className="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-2">
+            <span className="text-indigo-400">📝</span> Examples
+          </h2>
+          <GlassCard variant="dark">
+            <div
+              className="prose prose-invert max-w-none text-slate-200 space-y-4"
+              dangerouslySetInnerHTML={{ __html: examplesHtml }}
+            />
+          </GlassCard>
+        </div>
+      )}
+
+      {constraintsHtml && (
+        <div>
+          <h2 className="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-2">
+            <span className="text-amber-400">⚡</span> Constraints
+          </h2>
+          <GlassCard variant="dark">
+            <div
+              className="prose prose-invert max-w-none text-slate-200"
+              dangerouslySetInnerHTML={{ __html: constraintsHtml }}
+            />
+          </GlassCard>
+        </div>
+      )}
+
       {editorial && editorialHtml && (
         <div>
-          <h2 className="text-2xl font-bold text-slate-100 mb-4">Editorial</h2>
+          <h2 className="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-2">
+            <span className="text-green-400">✓</span> Editorial
+          </h2>
           <GlassCard variant="subtle">
             <div
               className="prose prose-invert max-w-none text-slate-200"
@@ -90,7 +142,9 @@ export function ProblemDescription({
 
       {solution && (
         <div>
-          <h2 className="text-2xl font-bold text-slate-100 mb-4">Solution</h2>
+          <h2 className="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-2">
+            <span className="text-cyan-400">💡</span> Solution
+          </h2>
           <GlassCard variant="subtle">
             <pre className="text-slate-200 text-sm overflow-x-auto">
               <code>{solution}</code>

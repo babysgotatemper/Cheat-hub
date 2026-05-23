@@ -55,14 +55,7 @@ export const metadata: Metadata = {
     images: ['/opengraph-image.png'],
   },
   icons: {
-    icon: [
-      { rel: 'icon', url: '/icon.png', type: 'image/png', sizes: '32x32' },
-      { rel: 'icon', url: '/favicon.ico' },
-    ],
-    apple: [
-      { rel: 'apple-touch-icon', url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
-    shortcut: '/favicon.ico',
+    icon: [{ rel: 'icon', url: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><defs><linearGradient id="g"><stop offset="0%25" stop-color="%234f46e5"/><stop offset="100%25" stop-color="%2306b6d4"/></linearGradient></defs><rect fill="url(%23g)" width="32" height="32"/><text x="16" y="24" font-family="system-ui" font-size="16" font-weight="bold" text-anchor="middle" fill="white">LC</text></svg>' }],
   },
   manifest: '/manifest.webmanifest',
   appleWebApp: {
@@ -79,7 +72,6 @@ export const metadata: Metadata = {
     { media: '(prefers-color-scheme: light)', color: '#ffffff' },
     { media: '(prefers-color-scheme: dark)', color: '#0f172a' },
   ],
-  colorScheme: 'dark light',
   robots: {
     index: true,
     follow: true,
@@ -115,7 +107,6 @@ export default function RootLayout({
         <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="canonical" href="https://leetcode-local.vercel.app" />
       </head>
       <body className="min-h-full flex flex-col bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-slate-100">
