@@ -1,0 +1,113 @@
+// Shared types for the cheat-sheet content layer.
+// Content from the original static CheetSheet project is represented as typed
+// data modules (see leetcode.ts, react.ts, ...) and rendered by generic
+// React components under src/components/cheatsheet/.
+
+export type TopicSlug =
+  | 'architecture'
+  | 'react'
+  | 'angular'
+  | 'javascript'
+  | 'git'
+  | 'ai'
+  | 'leetcode'
+
+export type TopicFormat = 'extended' | 'cheatsheet' | 'quiz'
+
+export type Accent =
+  | 'indigo'
+  | 'cyan'
+  | 'violet'
+  | 'emerald'
+  | 'amber'
+  | 'rose'
+  | 'orange'
+
+export interface TopicMeta {
+  slug: TopicSlug
+  title: string
+  icon: string // emoji
+  blurb: string // short description for the hub card
+  accent: Accent
+  formats: TopicFormat[]
+  badges?: string[] // small tags on the hub card
+}
+
+/* ---------- LeetCode (structured) ---------- */
+
+export type Difficulty = 'Easy' | 'Medium' | 'Hard'
+
+export interface TaskCard {
+  id: string // stable key, e.g. "contains-duplicate"
+  number: number // LeetCode problem number (#217)
+  title: string // "Contains Duplicate"
+  difficulty: Difficulty
+  description?: string // task description (may contain inline code)
+  hint?: string // approach / hint box
+  complexity?: string // "Time O(n), Space O(n)"
+  code?: string // TypeScript solution (raw)
+  language?: string // defaults to 'typescript'
+  practiceSlug?: string // -> /problems/{slug} when a DB problem exists
+  placeholder?: boolean // true for "see Notion" stubs without full content
+}
+
+export interface Section {
+  id: string // anchor + scroll-spy target, e.g. "arrays-hashing"
+  index: number // 1..18
+  emoji: string
+  title: string // "Arrays & Hashing"
+  count?: number // declared problem count
+  tasks: TaskCard[]
+}
+
+export interface LeetcodeData {
+  sections: Section[]
+  lifehacks?: TopicSection // rendered as a final special section
+}
+
+/* ---------- Prose topics (block model) ---------- */
+
+export type BlockTag = 'KEY' | 'NEW' | 'TIP'
+export type NoteTone = 'info' | 'good' | 'bad' | 'warn'
+
+export type ContentBlock =
+  | { kind: 'heading'; level: 2 | 3; text: string; tag?: BlockTag }
+  | { kind: 'paragraph'; html: string }
+  | { kind: 'code'; language: string; code: string; caption?: string }
+  | { kind: 'note'; tone: NoteTone; title?: string; html: string }
+  | { kind: 'grid'; columns: 2 | 3; items: ContentBlock[] }
+  | { kind: 'versionRow'; badges: { label: string; tone?: string }[] }
+  | {
+      kind: 'changelog'
+      phase: 'past' | 'future'
+      title: string
+      rows: { version: string; text: string }[]
+    }
+
+export interface TopicSection {
+  id: string // anchor / scroll-spy target
+  title: string
+  emoji?: string
+  blocks: ContentBlock[]
+}
+
+export interface TopicContent {
+  slug: TopicSlug
+  intro?: ContentBlock[]
+  sections: TopicSection[]
+}
+
+/* ---------- Quiz ---------- */
+
+export interface QuizQuestion {
+  id: string
+  question: string // may contain inline <code>
+  options: string[]
+  correct: number // index into options
+  explanation: string // HTML
+}
+
+export interface QuizData {
+  title: string
+  questions: QuizQuestion[]
+}

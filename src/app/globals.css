@@ -48,3 +48,175 @@
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Cheat-sheet prose: restyles the legacy CheetSheet markup (migrated as HTML
+   blocks) into the Liquid Glass palette. Scoped under .cheat-prose so it never
+   leaks into the rest of the app.
+--------------------------------------------------------------------------- */
+.cheat-prose {
+  @apply text-slate-300 leading-relaxed;
+}
+.cheat-prose h3,
+.cheat-prose .topic {
+  @apply mt-6 mb-3 text-lg font-semibold text-slate-100;
+}
+.cheat-prose h4 {
+  @apply mb-1.5 text-sm font-semibold text-slate-200;
+}
+.cheat-prose p {
+  @apply my-2 text-sm;
+}
+.cheat-prose ul,
+.cheat-prose .list {
+  @apply my-2 ml-5 list-disc text-sm text-slate-300;
+}
+.cheat-prose li {
+  @apply my-1;
+}
+.cheat-prose a {
+  @apply text-cyan-400 hover:text-cyan-300 underline;
+}
+.cheat-prose strong {
+  @apply text-slate-100;
+}
+
+/* Inline + block code inside prose */
+.cheat-prose code {
+  @apply rounded bg-black/40 px-1.5 py-0.5 font-mono text-[0.85em] text-cyan-300;
+}
+.cheat-prose pre {
+  @apply my-3 overflow-x-auto rounded-lg border border-white/10 bg-black/40 p-3 font-mono text-[12.5px] leading-relaxed text-slate-200;
+}
+.cheat-prose pre code {
+  @apply bg-transparent p-0 text-slate-200;
+}
+
+/* Syntax-highlight tokens from the original highlighter */
+.cheat-prose .kw {
+  @apply text-purple-300;
+}
+.cheat-prose .fn {
+  @apply text-cyan-300;
+}
+.cheat-prose .str {
+  @apply text-emerald-300;
+}
+.cheat-prose .num {
+  @apply text-orange-300;
+}
+.cheat-prose .type {
+  @apply text-yellow-300;
+}
+.cheat-prose .jsx {
+  @apply text-rose-300;
+}
+.cheat-prose .cmt {
+  @apply text-slate-500 italic;
+}
+
+/* Layout grids */
+.cheat-prose .grid2 {
+  @apply my-3 grid grid-cols-1 gap-3 md:grid-cols-2;
+}
+.cheat-prose .grid3 {
+  @apply my-3 grid grid-cols-1 gap-3 md:grid-cols-3;
+}
+
+/* Cards */
+.cheat-prose .card {
+  @apply rounded-xl border border-white/10 bg-white/[0.04] p-4;
+}
+.cheat-prose .card.red {
+  @apply border-red-500/30 bg-red-500/5;
+}
+.cheat-prose .card.green {
+  @apply border-emerald-500/30 bg-emerald-500/5;
+}
+.cheat-prose .card.blue {
+  @apply border-cyan-500/30 bg-cyan-500/5;
+}
+.cheat-prose .card.yellow {
+  @apply border-yellow-500/30 bg-yellow-500/5;
+}
+
+/* Alerts / callouts */
+.cheat-prose .alert {
+  @apply my-3 rounded-lg border-l-4 border-indigo-400 bg-indigo-500/10 px-4 py-3 text-sm;
+}
+.cheat-prose .alert.good,
+.cheat-prose .alert-good {
+  @apply border-emerald-400 bg-emerald-500/10;
+}
+.cheat-prose .alert.warn,
+.cheat-prose .alert-warn,
+.cheat-prose .warn {
+  @apply border-amber-400 bg-amber-500/10;
+}
+
+/* Tags / pills / badges */
+.cheat-prose .tag,
+.cheat-prose .pill,
+.cheat-prose .badge {
+  @apply ml-2 inline-block rounded-full border border-white/15 bg-white/10 px-2 py-0.5 align-middle text-[10px] font-semibold uppercase tracking-wide text-slate-300;
+}
+.cheat-prose .tag-key {
+  @apply border-indigo-400/40 bg-indigo-500/15 text-indigo-200;
+}
+.cheat-prose .tag-new {
+  @apply border-emerald-400/40 bg-emerald-500/15 text-emerald-200;
+}
+.cheat-prose .tag-pit {
+  @apply border-amber-400/40 bg-amber-500/15 text-amber-200;
+}
+
+/* Tables */
+.cheat-prose .table-wrap {
+  @apply my-3 overflow-x-auto rounded-lg border border-white/10;
+}
+.cheat-prose table {
+  @apply w-full border-collapse text-sm;
+}
+.cheat-prose th {
+  @apply bg-white/5 px-3 py-2 text-left font-semibold text-slate-200;
+}
+.cheat-prose td {
+  @apply border-t border-white/10 px-3 py-2 align-top text-slate-300;
+}
+
+/* Version / changelog blocks */
+.cheat-prose .version-row {
+  @apply my-3 flex flex-wrap gap-2;
+}
+.cheat-prose .ver {
+  @apply rounded-md border border-white/15 bg-white/10 px-2 py-1 text-xs font-semibold text-slate-200;
+}
+.cheat-prose .changelog {
+  @apply my-3 rounded-xl border border-white/10 p-4;
+}
+.cheat-prose .changelog-past {
+  @apply border-slate-500/30 bg-slate-500/5;
+}
+.cheat-prose .changelog-future {
+  @apply border-cyan-500/30 bg-cyan-500/5;
+}
+.cheat-prose .changelog-title {
+  @apply mb-2 font-semibold text-slate-100;
+}
+.cheat-prose .changelog-row {
+  @apply flex gap-3 border-t border-white/5 py-1.5 text-sm;
+}
+.cheat-prose .chver {
+  @apply min-w-[64px] shrink-0 font-mono text-xs font-semibold text-cyan-300;
+}
+.cheat-prose .changelog-text {
+  @apply text-slate-300;
+}
+
+/* Interview tips */
+.cheat-prose .interview-tips {
+  @apply my-3 rounded-xl border border-indigo-400/30 bg-indigo-500/5 p-4;
+}
+.cheat-prose .interview-tips-title {
+  @apply mb-2 font-semibold text-indigo-200;
+}

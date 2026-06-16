@@ -119,7 +119,13 @@ export default async function ProblemPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
-      <GlassNavbar />
+      <GlassNavbar
+        href="/problems"
+        links={[
+          { label: 'Усі задачі', href: '/problems' },
+          { label: 'Теорія', href: '/leetcode' },
+        ]}
+      />
       <main className="min-h-screen">
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 h-[calc(100vh-120px)]">
