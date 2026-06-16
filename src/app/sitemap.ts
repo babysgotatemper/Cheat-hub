@@ -1,15 +1,9 @@
 import { MetadataRoute } from 'next'
-import { db } from '@/lib/db'
+import { problems } from '@/data/problems'
 import { TOPICS, formatHref } from '@/lib/cheatsheet/registry'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://cheat-hub.vercel.app'
-
-  const problems = await db.problem.findMany({
-    select: {
-      slug: true,
-    },
-  })
 
   const problemEntries: MetadataRoute.Sitemap = problems.map((problem) => ({
     url: `${baseUrl}/problems/${problem.slug}`,

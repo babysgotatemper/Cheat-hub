@@ -14,7 +14,7 @@ interface Problem {
 
 interface ProblemListProps {
   problems: Problem[]
-  solvedIds: number[]
+  solvedSlugs: string[]
 }
 
 const difficultyColors = {
@@ -27,13 +27,13 @@ type SortOption = 'default' | 'a-z' | 'z-a' | 'easiest' | 'hardest'
 type DifficultyFilter = 'all' | 'easy' | 'medium' | 'hard'
 type StatusFilter = 'all' | 'solved' | 'unsolved'
 
-export function ProblemList({ problems, solvedIds }: ProblemListProps) {
+export function ProblemList({ problems, solvedSlugs }: ProblemListProps) {
   const [difficultyFilter, setDifficultyFilter] = useState<DifficultyFilter>('all')
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all')
   const [searchTerm, setSearchTerm] = useState('')
   const [sortBy, setSortBy] = useState<SortOption>('default')
 
-  const solvedSet = new Set(solvedIds)
+  const solvedSet = useMemo(() => new Set(solvedSlugs), [solvedSlugs])
 
   const filteredAndSorted = useMemo(() => {
     let result = [...problems]
@@ -46,9 +46,9 @@ export function ProblemList({ problems, solvedIds }: ProblemListProps) {
 
     // Status filter
     if (statusFilter === 'solved') {
-      result = result.filter((p) => solvedSet.has(p.id))
+      result = result.filter((p) => solvedSet.has(p.slug))
     } else if (statusFilter === 'unsolved') {
-      result = result.filter((p) => !solvedSet.has(p.id))
+      result = result.filter((p) => !solvedSet.has(p.slug))
     }
 
     // Search filter
@@ -152,7 +152,7 @@ export function ProblemList({ problems, solvedIds }: ProblemListProps) {
           </GlassCard>
         ) : (
           filteredAndSorted.map((problem) => {
-            const isSolved = solvedSet.has(problem.id)
+            const isSolved = solvedSet.has(problem.slug)
             return (
               <Link key={problem.id} href={`/problems/${problem.slug}`}>
                 <div

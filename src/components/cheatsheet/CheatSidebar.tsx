@@ -2,8 +2,9 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ChevronLeft, ChevronRight, Dumbbell } from 'lucide-react'
-import { TOPICS, FORMAT_LABELS, formatHref, ACCENT } from '@/lib/cheatsheet/registry'
+import { ChevronLeft, ChevronRight, User } from 'lucide-react'
+import { TOPICS, FORMAT_LABELS, formatHref, topicHref, ACCENT } from '@/lib/cheatsheet/registry'
+import { useUserStore } from '@/lib/userStore'
 import { cn } from '@/lib/utils'
 
 interface CheatSidebarProps {
@@ -13,6 +14,8 @@ interface CheatSidebarProps {
 
 export function CheatSidebar({ collapsed, onToggle }: CheatSidebarProps) {
   const pathname = usePathname()
+  const { data } = useUserStore()
+  const profileActive = pathname === '/profile'
 
   return (
     <aside
@@ -47,11 +50,15 @@ export function CheatSidebar({ collapsed, onToggle }: CheatSidebarProps) {
         <ul className="flex flex-col gap-1">
           {TOPICS.map((topic) => {
             const accent = ACCENT[topic.accent]
-            const isActive = pathname === `/${topic.slug}` || pathname.startsWith(`/${topic.slug}/`)
+            const hrefs = topic.formats.map((f) => formatHref(topic.slug, f))
+            const isActive =
+              pathname === `/${topic.slug}` ||
+              pathname.startsWith(`/${topic.slug}/`) ||
+              hrefs.includes(pathname)
             return (
               <li key={topic.slug}>
                 <Link
-                  href={formatHref(topic.slug, 'extended')}
+                  href={topicHref(topic)}
                   title={topic.title}
                   className={cn(
                     'flex items-center gap-2 rounded-lg px-2 py-2 text-sm transition-colors',
@@ -95,20 +102,24 @@ export function CheatSidebar({ collapsed, onToggle }: CheatSidebarProps) {
         </ul>
       </nav>
 
-      {/* Practice shortcut */}
-      <div className="border-t border-white/10 p-2">
+      {/* Profile link (local user) */}
+      <div className="border-t border-white/10 px-2 py-2">
         <Link
-          href="/problems"
-          title="Практика"
+          href="/profile"
+          title="Профіль"
           className={cn(
             'flex items-center gap-2 rounded-lg px-2 py-2 text-sm transition-colors',
-            pathname === '/problems'
+            profileActive
               ? 'bg-white/10 text-white'
               : 'text-slate-300 hover:bg-white/5 hover:text-white',
           )}
         >
-          <Dumbbell size={18} className="shrink-0" />
-          {!collapsed && <span className="truncate">Практика</span>}
+          <span className="w-5 shrink-0 text-center">
+            <User size={16} className="mx-auto" />
+          </span>
+          {!collapsed && (
+            <span className="truncate">{data.username || 'Профіль'}</span>
+          )}
         </Link>
       </div>
     </aside>

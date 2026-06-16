@@ -5,6 +5,7 @@ import Editor, { type Monaco } from '@monaco-editor/react'
 import { GlassPanel } from '@/components/glass/GlassPanel'
 import { Button } from '@/components/ui/Button'
 import { TestResults } from './TestResults'
+import { markSolved, markAttempted, addSubmission } from '@/lib/userStore'
 
 interface TestCase {
   input: string
@@ -45,35 +46,58 @@ export function CodeEditor({ starterCode, testCases, problemSlug }: CodeEditorPr
   const [results, setResults] = useState<any[] | null>(null)
   const [error, setError] = useState<string | null>(null)
 
-  const handleRun = useCallback(async () => {
-    setIsRunning(true)
-    setError(null)
-    setResults(null)
+  const execute = useCallback(
+    async (persistSubmission: boolean) => {
+      setIsRunning(true)
+      setError(null)
+      setResults(null)
 
-    try {
-      const response = await fetch('/api/run', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          code,
-          language,
-          testCases,
-        }),
-      })
+      try {
+        const response = await fetch('/api/run', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code, language, testCases }),
+        })
 
-      const data = await response.json()
+        const data = await response.json()
 
-      if (!response.ok) {
-        setError(data.error || 'Failed to run code')
-      } else {
+        if (!response.ok) {
+          setError(data.error || 'Failed to run code')
+          return
+        }
+
         setResults(data.results)
+        const allPassed =
+          Array.isArray(data.results) &&
+          data.results.length > 0 &&
+          data.results.every((r: { passed: boolean }) => r.passed)
+
+        if (allPassed) {
+          markSolved(problemSlug)
+        } else {
+          markAttempted(problemSlug)
+        }
+
+        if (persistSubmission) {
+          addSubmission({
+            slug: problemSlug,
+            code,
+            language,
+            status: allPassed ? 'Accepted' : 'Wrong Answer',
+            createdAt: new Date().toISOString(),
+          })
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An error occurred')
+      } finally {
+        setIsRunning(false)
       }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred')
-    } finally {
-      setIsRunning(false)
-    }
-  }, [code, language, testCases])
+    },
+    [code, language, testCases, problemSlug],
+  )
+
+  const handleRun = useCallback(() => execute(false), [execute])
+  const handleSubmit = useCallback(() => execute(true), [execute])
 
   return (
     <div className="space-y-4 h-full flex flex-col">
@@ -130,7 +154,12 @@ export function CodeEditor({ starterCode, testCases, problemSlug }: CodeEditorPr
         >
           {isRunning ? 'Running...' : 'Run Code'}
         </Button>
-        <Button variant="secondary" className="w-full">
+        <Button
+          onClick={handleSubmit}
+          disabled={isRunning}
+          variant="secondary"
+          className="w-full"
+        >
           Submit
         </Button>
       </div>

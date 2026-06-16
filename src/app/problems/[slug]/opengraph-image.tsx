@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og'
-import { db } from '@/lib/db'
+import { getProblemBySlug } from '@/data/problems'
 
 export const alt = 'Problem'
 export const size = {
@@ -15,14 +15,7 @@ export default async function Image({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const problem = await db.problem.findUnique({
-    where: { slug },
-    select: {
-      title: true,
-      difficulty: true,
-      tags: true,
-    },
-  })
+  const problem = getProblemBySlug(slug)
 
   if (!problem) {
     return new ImageResponse(

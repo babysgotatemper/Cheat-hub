@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { db } from '@/lib/db'
+import { getProblemBySlug } from '@/data/problems'
 import { stripMarkdown } from '@/lib/utils'
 import { GlassNavbar } from '@/components/glass/GlassNavbar'
 import { ProblemDescription } from '@/components/problems/ProblemDescription'
@@ -12,15 +12,7 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const problem = await db.problem.findUnique({
-    where: { slug },
-    select: {
-      title: true,
-      description: true,
-      difficulty: true,
-      tags: true,
-    },
-  })
+  const problem = getProblemBySlug(slug)
 
   if (!problem) {
     return {}
@@ -62,9 +54,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function ProblemPage({ params }: PageProps) {
   const { slug } = await params
 
-  const problem = await db.problem.findUnique({
-    where: { slug },
-  })
+  const problem = getProblemBySlug(slug)
 
   if (!problem) {
     notFound()

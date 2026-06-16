@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { runCode } from '@/lib/runner'
 
+export const runtime = 'nodejs'
+export const maxDuration = 30
+
 interface RunRequest {
   code: string
   language: 'javascript' | 'typescript'
