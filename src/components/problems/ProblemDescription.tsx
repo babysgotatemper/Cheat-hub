@@ -23,15 +23,24 @@ const difficultyColors = {
 } as const
 
 function parseDescription(text: string) {
-  const examplesMatch = text.match(/(##?\s*Examples?\s*\n[\s\S]*?)(?=##?\s*Constraints?|$)/i)
-  const constraintsMatch = text.match(/(##?\s*Constraints?\s*\n[\s\S]*?)$/i)
+  const examplesIndex = text.search(/Example/i)
+  const constraintsIndex = text.search(/Constraints?:/i)
 
-  const examplesSection = examplesMatch ? examplesMatch[1] : ''
-  const constraintsSection = constraintsMatch ? constraintsMatch[1] : ''
-
+  let examplesSection = ''
+  let constraintsSection = ''
   let mainText = text
-  if (examplesSection) mainText = mainText.replace(examplesSection, '')
-  if (constraintsSection) mainText = mainText.replace(constraintsSection, '')
+
+  if (examplesIndex !== -1 && constraintsIndex !== -1 && examplesIndex < constraintsIndex) {
+    examplesSection = text.substring(examplesIndex, constraintsIndex).trim()
+    mainText = text.substring(0, examplesIndex).trim()
+    constraintsSection = text.substring(constraintsIndex).trim()
+  } else if (examplesIndex !== -1) {
+    examplesSection = text.substring(examplesIndex).trim()
+    mainText = text.substring(0, examplesIndex).trim()
+  } else if (constraintsIndex !== -1) {
+    constraintsSection = text.substring(constraintsIndex).trim()
+    mainText = text.substring(0, constraintsIndex).trim()
+  }
 
   return {
     main: mainText.trim(),
