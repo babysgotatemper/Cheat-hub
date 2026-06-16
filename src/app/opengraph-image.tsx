@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og'
 
-export const alt = 'LeetCode Local'
+export const alt = 'Cheat Hub'
 export const size = {
   width: 1200,
   height: 630,
@@ -36,7 +36,7 @@ export default function Image() {
             WebkitTextFillColor: 'transparent',
           }}
         >
-          LeetCode Local
+          Cheat Hub
         </div>
         <div
           style={{
@@ -45,7 +45,7 @@ export default function Image() {
             fontWeight: 300,
           }}
         >
-          Solve JavaScript & TypeScript Challenges
+          Шпаргалки та теорія для співбесід
         </div>
         <div
           style={{
@@ -56,8 +56,8 @@ export default function Image() {
             gap: 40,
           }}
         >
-          <div>Easy • Medium • Hard</div>
-          <div>Editorials & Solutions</div>
+          <div>React • Angular • JS/TS</div>
+          <div>Git • AI • LeetCode</div>
         </div>
       </div>
     ),

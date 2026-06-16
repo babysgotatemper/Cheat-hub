@@ -13,17 +13,17 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://leetcode-local.vercel.app'),
+  metadataBase: new URL('https://cheat-hub.vercel.app'),
   title: {
-    default: 'LeetCode Local',
-    template: '%s | LeetCode Local',
+    default: 'Cheat Hub',
+    template: '%s | Cheat Hub',
   },
-  description: 'Local LeetCode platform with JavaScript & TypeScript problems for interview prep and coding practice',
-  keywords: ['leetcode', 'algorithm', 'coding', 'interview', 'javascript', 'typescript', 'dsa'],
+  description: 'Cheat Hub — шпаргалки та теорія для підготовки до співбесід: Architecture, React, Angular, JS/TS, Git, AI та практика LeetCode в редакторі коду.',
+  keywords: ['cheatsheet', 'шпаргалка', 'співбесіда', 'interview', 'react', 'angular', 'javascript', 'typescript', 'git', 'ai', 'leetcode', 'algorithm', 'dsa', 'frontend'],
   authors: [
     {
-      name: 'LeetCode Local',
-      url: 'https://leetcode-local.vercel.app',
+      name: 'Cheat Hub',
+      url: 'https://cheat-hub.vercel.app',
     },
   ],
   creator: 'Roman Semak',
@@ -31,37 +31,37 @@ export const metadata: Metadata = {
   classification: 'Education',
   openGraph: {
     type: 'website',
-    locale: 'en_US',
-    url: 'https://leetcode-local.vercel.app',
-    siteName: 'LeetCode Local',
-    title: 'LeetCode Local - Coding Interview Practice',
-    description: 'Local LeetCode platform with JavaScript & TypeScript problems for interview prep and coding practice',
+    locale: 'uk_UA',
+    url: 'https://cheat-hub.vercel.app',
+    siteName: 'Cheat Hub',
+    title: 'Cheat Hub — шпаргалки та теорія для співбесід',
+    description: 'Cheat Hub — шпаргалки та теорія для підготовки до співбесід: Architecture, React, Angular, JS/TS, Git, AI та практика LeetCode в редакторі коду.',
     images: [
       {
         url: '/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: 'LeetCode Local',
+        alt: 'Cheat Hub',
         type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@leetcodelocal',
-    creator: '@leetcodelocal',
-    title: 'LeetCode Local',
-    description: 'Coding interview practice platform',
+    site: '@cheathub',
+    creator: '@cheathub',
+    title: 'Cheat Hub',
+    description: 'Шпаргалки та теорія для підготовки до співбесід',
     images: ['/opengraph-image.png'],
   },
   icons: {
-    icon: [{ rel: 'icon', url: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><defs><linearGradient id="g"><stop offset="0%25" stop-color="%234f46e5"/><stop offset="100%25" stop-color="%2306b6d4"/></linearGradient></defs><rect fill="url(%23g)" width="32" height="32"/><text x="16" y="24" font-family="system-ui" font-size="16" font-weight="bold" text-anchor="middle" fill="white">LC</text></svg>' }],
+    icon: [{ rel: 'icon', url: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><defs><linearGradient id="g"><stop offset="0%25" stop-color="%234f46e5"/><stop offset="100%25" stop-color="%2306b6d4"/></linearGradient></defs><rect fill="url(%23g)" width="32" height="32" rx="6"/><text x="16" y="22" font-family="monospace" font-size="13" font-weight="bold" text-anchor="middle" fill="white">&lt;/&gt;</text></svg>' }],
   },
   manifest: '/manifest.webmanifest',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'LeetCode Local',
+    title: 'Cheat Hub',
   },
   formatDetection: {
     telephone: false,
@@ -103,11 +103,11 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="LeetCode Local" />
+        <meta name="apple-mobile-web-app-title" content="Cheat Hub" />
         <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <link rel="canonical" href="https://leetcode-local.vercel.app" />
+        <link rel="canonical" href="https://cheat-hub.vercel.app" />
       </head>
       <body className="min-h-full flex flex-col bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-slate-100">
         {children}

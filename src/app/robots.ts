@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/api/',
     },
-    sitemap: 'https://leetcode-local.vercel.app/sitemap.xml',
+    sitemap: 'https://cheat-hub.vercel.app/sitemap.xml',
   }
 }

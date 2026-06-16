@@ -3,7 +3,7 @@ import { db } from '@/lib/db'
 import { TOPICS, formatHref } from '@/lib/cheatsheet/registry'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://leetcode-local.vercel.app'
+  const baseUrl = 'https://cheat-hub.vercel.app'
 
   const problems = await db.problem.findMany({
     select: {

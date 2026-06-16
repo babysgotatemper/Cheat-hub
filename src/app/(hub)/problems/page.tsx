@@ -8,12 +8,12 @@ export const metadata: Metadata = {
     'Browse and solve JavaScript and TypeScript coding challenges. All problems include detailed explanations, editorials, and premium solutions.',
   openGraph: {
     type: 'website',
-    title: 'Problems | LeetCode Local',
+    title: 'Problems | Cheat Hub',
     description:
       'Browse and solve JavaScript and TypeScript coding challenges with editorials and solutions.',
   },
   alternates: {
-    canonical: 'https://leetcode-local.vercel.app/problems',
+    canonical: 'https://cheat-hub.vercel.app/problems',
   },
 }
 

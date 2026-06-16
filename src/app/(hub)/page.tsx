@@ -3,11 +3,11 @@ import { TOPICS } from '@/lib/cheatsheet/registry'
 import { TopicHubCard } from '@/components/cheatsheet/TopicHubCard'
 
 export const metadata: Metadata = {
-  title: 'Cheat Hub',
+  title: { absolute: 'Cheat Hub — шпаргалки та теорія для співбесід' },
   description:
     'Шпаргалки та теорія для співбесід: Architecture, React, Angular, JS/TS, Git, AI та LeetCode з практикою в редакторі.',
   alternates: {
-    canonical: 'https://leetcode-local.vercel.app',
+    canonical: 'https://cheat-hub.vercel.app',
   },
 }
 

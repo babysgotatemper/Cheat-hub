@@ -9,7 +9,7 @@ interface GlassNavbarProps {
 }
 
 export function GlassNavbar({
-  title = 'LeetCode Local',
+  title = 'Cheat Hub',
   href = '/',
   links,
 }: GlassNavbarProps) {

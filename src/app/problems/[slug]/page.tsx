@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: 'article',
       title: problem.title,
       description: cleanDescription,
-      url: `https://leetcode-local.vercel.app/problems/${slug}`,
+      url: `https://cheat-hub.vercel.app/problems/${slug}`,
       images: [
         {
           url: `/problems/${slug}/opengraph-image.png`,
@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       images: [`/problems/${slug}/opengraph-image.png`],
     },
     alternates: {
-      canonical: `https://leetcode-local.vercel.app/problems/${slug}`,
+      canonical: `https://cheat-hub.vercel.app/problems/${slug}`,
     },
   }
 }
@@ -79,7 +79,7 @@ export default async function ProblemPage({ params }: PageProps) {
     '@type': 'LearningResource',
     name: problem.title,
     description: stripMarkdown(problem.description, 500),
-    url: `https://leetcode-local.vercel.app/problems/${slug}`,
+    url: `https://cheat-hub.vercel.app/problems/${slug}`,
     educationalLevel: problem.difficulty,
     keywords: tags.join(', '),
   }
@@ -92,19 +92,19 @@ export default async function ProblemPage({ params }: PageProps) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://leetcode-local.vercel.app',
+        item: 'https://cheat-hub.vercel.app',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Problems',
-        item: 'https://leetcode-local.vercel.app',
+        item: 'https://cheat-hub.vercel.app',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: problem.title,
-        item: `https://leetcode-local.vercel.app/problems/${slug}`,
+        item: `https://cheat-hub.vercel.app/problems/${slug}`,
       },
     ],
   }

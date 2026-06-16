@@ -104,7 +104,7 @@ export default async function Image({
             color: '#94a3b8',
           }}
         >
-          LeetCode Local • JavaScript • TypeScript
+          Cheat Hub • JavaScript • TypeScript
         </div>
       </div>
     ),

@@ -2,9 +2,9 @@ import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'LeetCode Local',
-    short_name: 'LC',
-    description: 'Local LeetCode platform with JavaScript & TypeScript problems for interview prep',
+    name: 'Cheat Hub',
+    short_name: 'Cheat Hub',
+    description: 'Шпаргалки та теорія для підготовки до співбесід: Architecture, React, Angular, JS/TS, Git, AI та практика LeetCode',
     start_url: '/',
     scope: '/',
     display: 'standalone',
