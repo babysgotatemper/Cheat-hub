@@ -2,36 +2,8 @@
 
 import { useMemo, useState } from 'react'
 import { Check, Copy } from 'lucide-react'
-import hljs from 'highlight.js/lib/core'
-import typescript from 'highlight.js/lib/languages/typescript'
-import javascript from 'highlight.js/lib/languages/javascript'
-import bash from 'highlight.js/lib/languages/bash'
-import xml from 'highlight.js/lib/languages/xml'
-import css from 'highlight.js/lib/languages/css'
 import 'highlight.js/styles/github-dark.css'
-
-// Register only the languages we ship to keep the bundle small.
-hljs.registerLanguage('typescript', typescript)
-hljs.registerLanguage('javascript', javascript)
-hljs.registerLanguage('bash', bash)
-hljs.registerLanguage('xml', xml)
-hljs.registerLanguage('css', css)
-
-// Map our content languages onto a registered hljs language.
-const LANG_MAP: Record<string, string> = {
-  typescript: 'typescript',
-  ts: 'typescript',
-  tsx: 'typescript',
-  javascript: 'javascript',
-  js: 'javascript',
-  jsx: 'javascript',
-  bash: 'bash',
-  sh: 'bash',
-  shell: 'bash',
-  html: 'xml',
-  xml: 'xml',
-  css: 'css',
-}
+import { highlight } from '@/lib/cheatsheet/highlight'
 
 export function CodeBlock({
   code,
@@ -46,21 +18,7 @@ export function CodeBlock({
 }) {
   const [copied, setCopied] = useState(false)
 
-  const highlighted = useMemo(() => {
-    const lang = LANG_MAP[language.toLowerCase()]
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return hljs.highlight(code, { language: lang }).value
-      } catch {
-        /* fall through to escaped plain text */
-      }
-    }
-    // No registered language → escape so it renders as plain text.
-    return code
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-  }, [code, language])
+  const highlighted = useMemo(() => highlight(code, language), [code, language])
 
   const copy = async () => {
     try {

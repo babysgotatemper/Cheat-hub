@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Dumbbell } from 'lucide-react'
-import { leetcodeData } from '@/lib/cheatsheet/leetcode'
-import { CheatGrid } from '@/components/cheatsheet/CheatGrid'
+import { lifehacks, LIFEHACK_CATEGORIES } from '@/lib/cheatsheet/lifehacks'
+import { LifehacksView } from '@/components/cheatsheet/LifehacksView'
 
 export const metadata: Metadata = {
   title: 'LeetCode — Шпаргалка',
-  description: 'Компактна шпаргалка NeetCode 250: 18 тем, 175+ задач з підказками й складністю.',
+  description: 'JS/TS лайфхаки та трюки роботи з методами мови для розв’язання задач.',
 }
 
 export default function LeetcodeCheatsheetPage() {
@@ -16,7 +16,7 @@ export default function LeetcodeCheatsheetPage() {
         <div>
           <h1 className="text-2xl font-bold text-orange-400">🧩 LeetCode — Шпаргалка</h1>
           <p className="mt-1 text-sm text-slate-400">
-            Компактний довідник усіх задач з підказками й складністю.
+            JS/TS лайфхаки та трюки роботи з методами мови.
           </p>
         </div>
         <Link
@@ -27,7 +27,7 @@ export default function LeetcodeCheatsheetPage() {
         </Link>
       </header>
 
-      <CheatGrid sections={leetcodeData.sections} />
+      <LifehacksView hacks={lifehacks} categories={LIFEHACK_CATEGORIES} />
     </div>
   )
 }
