@@ -1,0 +1,168 @@
+// IDE topic — огляд найпоширеніших IDE/редакторів для JS/TS розробки.
+// Контент авторський (не auto-generated). Рендериться через ProseTopicView →
+// ContentBlocks: підтримуються блоки 'paragraph' (HTML у .cheat-prose) та
+// 'code'. Картки/алерти/гриди — це HTML-класи всередині paragraph
+// (.grid2, .card.green/.card.red, .alert/.alert.good), як у решті топіків.
+import type { TopicContent } from './types'
+
+export const ideContent: TopicContent = {
+  slug: 'ide',
+  intro: [
+    {
+      kind: 'paragraph',
+      html: '<p><strong>IDE (Integrated Development Environment)</strong> — середовище, що поєднує редактор коду, автодоповнення, дебагер, інтеграцію з системою контролю версій та інші інструменти. Нижче — три найпоширеніші середовища для JavaScript/TypeScript розробки. Статистика популярності наведена за <strong>Stack Overflow Developer Survey 2024</strong>.</p>',
+    },
+  ],
+  sections: [
+    /* ---------- VS Code ---------- */
+    {
+      id: 'vs-code',
+      title: '🟦 Visual Studio Code',
+      blocks: [
+        {
+          kind: 'paragraph',
+          html: `
+            <h3 class="topic">Хто і що</h3>
+            <p><strong>Хто:</strong> розробники всіх рівнів — від новачків до senior; найширша аудиторія на ринку. <strong>Що:</strong> безкоштовний кросплатформний редактор коду (формально редактор, а не повна IDE) на базі <code>Electron</code>, що набуває можливостей IDE через розширення.</p>
+            <h3 class="topic">Чому і для чого</h3>
+            <p><strong>Чому:</strong> легкий, швидкий старт, безкоштовний і має величезну екосистему розширень. <strong>Для чого:</strong> веброзробка (JS/TS, React, Node.js), а також Python, Go та майже будь-яка мова через відповідні extensions і language servers.</p>
+            <h3 class="topic">Ким створений</h3>
+            <p><strong>Microsoft</strong>, перший реліз — <strong>2015</strong>. Open-source (ядро на <code>TypeScript</code>, ліцензія MIT).</p>
+            <h3 class="topic">Як використовується</h3>
+            <p>Встановлюється локально; функціональність нарощується розширеннями (ESLint, Prettier, мовні сервери). «З коробки» — вбудовані Git, інтегрований термінал, дебагер та спільне редагування (Live Share).</p>
+          `,
+        },
+        {
+          kind: 'paragraph',
+          html: '<div class="alert"><strong>📊 Статистика (SO Survey 2024):</strong> ~<strong>74%</strong> розробників обирають VS Code — найпопулярніше середовище розробки у світі.</div>',
+        },
+        {
+          kind: 'paragraph',
+          html: `
+            <div class="grid2">
+              <div class="card green">
+                <h4>✅ Хороші сторони</h4>
+                <ul>
+                  <li>Безкоштовний і open-source</li>
+                  <li>Величезний marketplace розширень</li>
+                  <li>Легкий, швидкий старт, крос-платформа</li>
+                  <li>Вбудовані Git, термінал, дебагер</li>
+                  <li>Активний розвиток і велика спільнота</li>
+                </ul>
+              </div>
+              <div class="card red">
+                <h4>⚠️ Погані сторони</h4>
+                <ul>
+                  <li>На великих проєктах поступається повноцінним IDE за глибиною рефакторингу</li>
+                  <li>«Extension hell» — конфлікти та перевантаження розширеннями</li>
+                  <li>Electron → помітне споживання RAM</li>
+                  <li>Телеметрія Microsoft (альтернатива — VSCodium)</li>
+                </ul>
+              </div>
+            </div>
+          `,
+        },
+      ],
+    },
+
+    /* ---------- Cursor ---------- */
+    {
+      id: 'cursor',
+      title: '🟣 Cursor',
+      blocks: [
+        {
+          kind: 'paragraph',
+          html: `
+            <h3 class="topic">Хто і що</h3>
+            <p><strong>Хто:</strong> розробники, які активно використовують AI у щоденній роботі. <strong>Що:</strong> AI-first редактор коду — форк <code>VS Code</code> з глибокою інтеграцією великих мовних моделей (LLM).</p>
+            <h3 class="topic">Чому і для чого</h3>
+            <p><strong>Чому:</strong> AI-автодоповнення (Tab), чат із усією кодовою базою та агентний режим (Composer/Agent) для багатофайлових змін. <strong>Для чого:</strong> пришвидшення розробки — генерація, рефакторинг, пояснення коду та навігація великими репозиторіями за допомогою AI.</p>
+            <h3 class="topic">Ким створений</h3>
+            <p><strong>Anysphere</strong>, перший реліз — <strong>2023</strong>.</p>
+            <h3 class="topic">Як використовується</h3>
+            <p>Працює як VS Code (сумісний з його розширеннями та темами), додаючи AI-функції; дозволяє обирати модель (Claude, GPT тощо) і має <code>Privacy mode</code> для коду, що не повинен залишати машину.</p>
+          `,
+        },
+        {
+          kind: 'paragraph',
+          html: '<div class="alert"><strong>📊 Статистика (SO Survey 2024):</strong> Cursor уперше зʼявився серед AI-інструментів розробників. Частка ще невелика порівняно з VS Code, але швидко зростає — один з лідерів категорії AI-редакторів.</div>',
+        },
+        {
+          kind: 'paragraph',
+          html: `
+            <div class="grid2">
+              <div class="card green">
+                <h4>✅ Хороші сторони</h4>
+                <ul>
+                  <li>Найкраща AI-інтеграція «з коробки»</li>
+                  <li>Сумісність з екосистемою розширень VS Code</li>
+                  <li>Агентний режим для масштабних багатофайлових змін</li>
+                  <li>Швидке впровадження нових AI-можливостей</li>
+                </ul>
+              </div>
+              <div class="card red">
+                <h4>⚠️ Погані сторони</h4>
+                <ul>
+                  <li>Платні тарифи за AI (Pro)</li>
+                  <li>Відставання від upstream VS Code за версіями</li>
+                  <li>Залежність від хмарних AI-провайдерів (приватність, vendor lock)</li>
+                  <li>Ризик надмірної довіри до AI-генерованого коду</li>
+                </ul>
+              </div>
+            </div>
+          `,
+        },
+      ],
+    },
+
+    /* ---------- WebStorm / JetBrains ---------- */
+    {
+      id: 'webstorm-jetbrains',
+      title: '🟠 WebStorm / JetBrains',
+      blocks: [
+        {
+          kind: 'paragraph',
+          html: `
+            <h3 class="topic">Хто і що</h3>
+            <p><strong>Хто:</strong> професійні JS/TS розробники та команди, які цінують потужний рефакторинг і надійність. <strong>Що:</strong> повноцінна комерційна IDE для JS/TS (<code>WebStorm</code>) із сімейства JetBrains (IntelliJ IDEA, PyCharm та ін.) на платформі IntelliJ.</p>
+            <h3 class="topic">Чому і для чого</h3>
+            <p><strong>Чому:</strong> глибокий статичний аналіз, найкращий у класі рефакторинг, навігація та інтегровані інструменти (дебагер, test runner, VCS, бази даних). <strong>Для чого:</strong> великі й складні frontend/Node проєкти, де критична надійність автоматичних рефакторингів і цілісне розуміння проєкту.</p>
+            <h3 class="topic">Ким створений</h3>
+            <p><strong>JetBrains</strong>; WebStorm — з <strong>2010</strong> (платформа IntelliJ — з 2001).</p>
+            <h3 class="topic">Як використовується</h3>
+            <p>Працює «з коробки» без ручного складання середовища: індексація проєкту, розумне автодоповнення, інспекції, рефакторинги (<code>Rename</code>, <code>Extract</code>, <code>Move</code>), інтеграція з Git/Docker/БД. З 2024 безкоштовний для некомерційного використання.</p>
+          `,
+        },
+        {
+          kind: 'paragraph',
+          html: '<div class="alert"><strong>📊 Статистика (SO Survey 2024):</strong> IDE сімейства JetBrains стабільно посідають друге місце після VS Code (IntelliJ IDEA ~28%, WebStorm — кілька відсотків серед спеціалізованих JS/TS середовищ).</div>',
+        },
+        {
+          kind: 'paragraph',
+          html: `
+            <div class="grid2">
+              <div class="card green">
+                <h4>✅ Хороші сторони</h4>
+                <ul>
+                  <li>Найкращий рефакторинг і навігація на ринку</li>
+                  <li>Глибокий аналіз коду «з коробки», без налаштувань</li>
+                  <li>Інтегровані інструменти (debug, тести, VCS, БД)</li>
+                  <li>Надійність на великих і складних проєктах</li>
+                </ul>
+              </div>
+              <div class="card red">
+                <h4>⚠️ Погані сторони</h4>
+                <ul>
+                  <li>Платний для комерційного використання (підписка)</li>
+                  <li>Важчий, повільніший старт та індексація проєкту</li>
+                  <li>Високе споживання RAM/CPU</li>
+                  <li>Крутіша крива входу порівняно з VS Code</li>
+                </ul>
+              </div>
+            </div>
+          `,
+        },
+      ],
+    },
+  ],
+}

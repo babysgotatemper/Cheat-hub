@@ -7,10 +7,10 @@ export const TOPICS: TopicMeta[] = [
     slug: 'leetcode',
     title: 'LeetCode',
     icon: '🧩',
-    blurb: 'NeetCode 250 — база задач для live-coding інтерв’ю. Теорія + практика в редакторі.',
+    blurb: 'Практика задач у редакторі коду + шпаргалка JS/TS лайфхаків.',
     accent: 'orange',
-    formats: ['extended', 'cheatsheet'],
-    badges: ['18 тем', '175+ задач', 'Практика'],
+    formats: ['practice', 'cheatsheet'],
+    badges: ['Практика', 'Лайфхаки'],
   },
   {
     slug: 'architecture',
@@ -60,6 +60,15 @@ export const TOPICS: TopicMeta[] = [
     accent: 'indigo',
     formats: ['extended', 'cheatsheet'],
   },
+  {
+    slug: 'ide',
+    title: 'IDE',
+    icon: '🖥️',
+    blurb: 'Найпоширеніші IDE та редактори для JS/TS розробки.',
+    accent: 'sky',
+    formats: ['extended'],
+    badges: ['VS Code', 'Cursor', 'WebStorm'],
+  },
 ]
 
 export function getTopic(slug: TopicSlug): TopicMeta | undefined {
@@ -70,11 +79,20 @@ export const FORMAT_LABELS: Record<string, string> = {
   extended: 'Розширена',
   cheatsheet: 'Шпаргалка',
   quiz: 'Квіз',
+  practice: 'Практика',
 }
 
-// Path for a topic format. extended -> /slug, others -> /slug/<format>.
+// Path for a topic format. practice -> /problems (shared editor), extended ->
+// /slug, others -> /slug/<format>.
 export function formatHref(slug: TopicSlug, format: string): string {
+  if (format === 'practice') return '/problems'
   return format === 'extended' ? `/${slug}` : `/${slug}/${format}`
+}
+
+// Primary route for a topic = its first declared format. Lets a topic open on
+// something other than the extended view (e.g. LeetCode opens on Practice).
+export function topicHref(topic: TopicMeta): string {
+  return formatHref(topic.slug, topic.formats[0])
 }
 
 // Tailwind class fragments per accent. Static strings so Tailwind keeps them.
@@ -130,5 +148,12 @@ export const ACCENT: Record<
     ring: 'ring-orange-400/40',
     gradient: 'from-orange-500 to-orange-700',
     dot: 'bg-orange-400',
+  },
+  sky: {
+    text: 'text-sky-400',
+    border: 'hover:border-sky-400/60',
+    ring: 'ring-sky-400/40',
+    gradient: 'from-sky-500 to-blue-600',
+    dot: 'bg-sky-400',
   },
 }
