@@ -17,6 +17,7 @@
     "@monaco-editor/react": "^4.6.0",
     "@prisma/adapter-libsql": "^5.22.0",
     "@prisma/client": "^5.20.0",
+    "@radix-ui/react-dialog": "^1.1.17",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "highlight.js": "^11.11.1",
@@ -27,7 +28,8 @@
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "sucrase": "^3.35.1",
-    "tailwind-merge": "^2.3.0"
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/markdown-it": "^13.0.7",

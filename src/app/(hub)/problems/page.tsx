@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { problems } from '@/data/problems'
+import { stripMarkdown } from '@/lib/utils'
 import { ProblemsView } from '@/components/problems/ProblemsView'
 
 export const metadata: Metadata = {
@@ -23,6 +24,8 @@ export default function ProblemsPage() {
     slug: p.slug,
     title: p.title,
     difficulty: p.difficulty,
+    summary: stripMarkdown(p.description, 140), // «що зробити»
+    tags: JSON.parse(p.tags) as string[], // «що використати»
   }))
 
   return <ProblemsView problems={list} />

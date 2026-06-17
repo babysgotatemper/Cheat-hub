@@ -5,6 +5,18 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  // Accent classes live in src/lib/cheatsheet/registry.ts (not scanned by the
+  // content globs). Most accents survive because they also appear in scanned
+  // components, but `fuchsia` (Fullstack topic) is unique to the registry —
+  // safelist it so the hub card / sidebar accent isn't purged.
+  safelist: [
+    'text-fuchsia-400',
+    'hover:border-fuchsia-400/60',
+    'ring-fuchsia-400/40',
+    'from-fuchsia-500',
+    'to-pink-700',
+    'bg-fuchsia-400',
+  ],
   theme: {
     extend: {
       colors: {
@@ -13,5 +25,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-animate')],
 }

@@ -9,6 +9,8 @@ interface Problem {
   slug: string
   title: string
   difficulty: string
+  summary?: string
+  tags?: string[]
 }
 
 export function ProblemsView({ problems }: { problems: Problem[] }) {

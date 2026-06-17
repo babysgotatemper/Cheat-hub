@@ -10,6 +10,8 @@ interface Problem {
   slug: string
   title: string
   difficulty: string
+  summary?: string
+  tags?: string[]
 }
 
 interface ProblemListProps {
@@ -153,29 +155,56 @@ export function ProblemList({ problems, solvedSlugs }: ProblemListProps) {
         ) : (
           filteredAndSorted.map((problem) => {
             const isSolved = solvedSet.has(problem.slug)
+            const hasTooltip = Boolean(problem.summary || problem.tags?.length)
             return (
-              <Link key={problem.id} href={`/problems/${problem.slug}`}>
-                <div
-                  className={`rounded-xl p-3 hover:glass cursor-pointer transition-all duration-200 flex items-center justify-between gap-4 ${
-                    isSolved
-                      ? 'glass-subtle border-l-2 border-emerald-400'
-                      : 'glass-subtle'
-                  }`}
-                >
-                  <div className="flex items-center gap-3 flex-1 min-w-0">
-                    {isSolved && <span className="text-emerald-400 text-lg">✓</span>}
-                    <span className={`font-medium truncate text-sm ${isSolved ? 'text-slate-400' : 'text-slate-100'}`}>
-                      {problem.title}
-                    </span>
-                  </div>
-                  <Badge
-                    variant={difficultyColors[problem.difficulty as keyof typeof difficultyColors]}
-                    className="whitespace-nowrap flex-shrink-0 text-xs"
+              <div key={problem.id} className="group/row relative">
+                <Link href={`/problems/${problem.slug}`}>
+                  <div
+                    className={`rounded-xl p-3 hover:glass cursor-pointer transition-all duration-200 flex items-center justify-between gap-4 ${
+                      isSolved
+                        ? 'glass-subtle border-l-2 border-emerald-400'
+                        : 'glass-subtle'
+                    }`}
                   >
-                    {problem.difficulty}
-                  </Badge>
-                </div>
-              </Link>
+                    <div className="flex items-center gap-3 flex-1 min-w-0">
+                      {isSolved && <span className="text-emerald-400 text-lg">✓</span>}
+                      <span className={`font-medium truncate text-sm ${isSolved ? 'text-slate-400' : 'text-slate-100'}`}>
+                        {problem.title}
+                      </span>
+                    </div>
+                    <Badge
+                      variant={difficultyColors[problem.difficulty as keyof typeof difficultyColors]}
+                      className="whitespace-nowrap flex-shrink-0 text-xs"
+                    >
+                      {problem.difficulty}
+                    </Badge>
+                  </div>
+                </Link>
+
+                {hasTooltip && (
+                  <div className="pointer-events-none absolute left-0 top-full z-20 mt-1 w-80 max-w-[90vw] rounded-lg border border-white/10 bg-slate-900/95 p-3 text-xs opacity-0 shadow-xl backdrop-blur transition-opacity duration-150 group-hover/row:opacity-100">
+                    {problem.summary && (
+                      <p className="text-slate-300">
+                        <span className="font-semibold text-slate-100">Що зробити: </span>
+                        {problem.summary}
+                      </p>
+                    )}
+                    {problem.tags && problem.tags.length > 0 && (
+                      <div className="mt-2 flex flex-wrap items-center gap-1">
+                        <span className="font-semibold text-slate-100">Що використати:</span>
+                        {problem.tags.map((t) => (
+                          <span
+                            key={t}
+                            className="rounded bg-white/10 px-1.5 py-0.5 text-[10px] text-slate-300"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
             )
           })
         )}

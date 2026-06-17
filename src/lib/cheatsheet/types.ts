@@ -12,6 +12,8 @@ export type TopicSlug =
   | 'ai'
   | 'leetcode'
   | 'ide'
+  | 'algorithms'
+  | 'fullstack'
 
 export type TopicFormat = 'extended' | 'cheatsheet' | 'quiz' | 'practice'
 
@@ -24,6 +26,8 @@ export type Accent =
   | 'rose'
   | 'orange'
   | 'sky'
+  | 'teal'
+  | 'fuchsia'
 
 export interface TopicMeta {
   slug: TopicSlug

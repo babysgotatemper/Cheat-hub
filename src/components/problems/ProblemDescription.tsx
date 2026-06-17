@@ -1,7 +1,16 @@
 'use client'
 
+import { BookOpen, Lightbulb } from 'lucide-react'
 import { GlassCard } from '@/components/glass/GlassCard'
 import { Badge } from '@/components/ui/Badge'
+import { Button } from '@/components/ui/Button'
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
 import MarkdownIt from 'markdown-it'
 
 const md = new MarkdownIt()
@@ -68,14 +77,57 @@ export function ProblemDescription({
   return (
     <div className="space-y-6">
       <div>
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between gap-4 mb-4">
           <h1 className="text-3xl font-bold text-slate-100">{title}</h1>
+          <div className="flex flex-shrink-0 items-center gap-2">
+            {editorial && editorialHtml && (
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="secondary" size="sm" className="inline-flex items-center gap-1.5">
+                    <BookOpen size={15} className="text-green-400" /> Editorial
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>
+                      <span className="text-green-400">✓</span> Editorial
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div
+                    className="prose prose-invert max-w-none text-slate-200"
+                    dangerouslySetInnerHTML={{ __html: editorialHtml }}
+                  />
+                </DialogContent>
+              </Dialog>
+            )}
+
+            {solution && (
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="secondary" size="sm" className="inline-flex items-center gap-1.5">
+                    <Lightbulb size={15} className="text-cyan-400" /> Solution
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>
+                      <span className="text-cyan-400">💡</span> Solution
+                    </DialogTitle>
+                  </DialogHeader>
+                  <pre className="text-slate-200 text-sm overflow-x-auto custom-scrollbar">
+                    <code>{solution}</code>
+                  </pre>
+                </DialogContent>
+              </Dialog>
+            )}
+          </div>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2 mb-4">
           <Badge variant={difficultyColors[difficulty as keyof typeof difficultyColors]}>
             {difficulty}
           </Badge>
-        </div>
-
-        <div className="flex flex-wrap gap-2 mb-4">
+          {tags.length > 0 && <span aria-hidden className="h-4 w-px bg-white/15" />}
           {tags.map((tag) => (
             <Badge key={tag} variant="default">
               {tag}
@@ -135,32 +187,6 @@ export function ProblemDescription({
         </div>
       )}
 
-      {editorial && editorialHtml && (
-        <div>
-          <h2 className="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-2">
-            <span className="text-green-400">✓</span> Editorial
-          </h2>
-          <GlassCard variant="subtle">
-            <div
-              className="prose prose-invert max-w-none text-slate-200"
-              dangerouslySetInnerHTML={{ __html: editorialHtml }}
-            />
-          </GlassCard>
-        </div>
-      )}
-
-      {solution && (
-        <div>
-          <h2 className="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-2">
-            <span className="text-cyan-400">💡</span> Solution
-          </h2>
-          <GlassCard variant="subtle">
-            <pre className="text-slate-200 text-sm overflow-x-auto">
-              <code>{solution}</code>
-            </pre>
-          </GlassCard>
-        </div>
-      )}
     </div>
   )
 }

@@ -4,6 +4,16 @@ import type { TopicMeta, TopicSlug, Accent } from './types'
 // the sidebar navigation. Adding a topic = one entry here + one data module.
 export const TOPICS: TopicMeta[] = [
   {
+    slug: 'algorithms',
+    title: 'Алгоритми',
+    icon: '🧠',
+    blurb:
+      'Структури даних та алгоритмічні патерни для LeetCode: опис, коли застосовувати, складність.',
+    accent: 'teal',
+    formats: ['extended'],
+    badges: ['Структури даних', 'Патерни'],
+  },
+  {
     slug: 'leetcode',
     title: 'LeetCode',
     icon: '🧩',
@@ -19,6 +29,16 @@ export const TOPICS: TopicMeta[] = [
     blurb: 'Патерни проєктування, принципи та архітектурні підходи.',
     accent: 'violet',
     formats: ['extended', 'cheatsheet'],
+  },
+  {
+    slug: 'fullstack',
+    title: 'Fullstack',
+    icon: '🚀',
+    blurb:
+      'Backend-стек, бази даних, API, DevOps та system design — усе для співбесіди Senior Full Stack.',
+    accent: 'fuchsia',
+    formats: ['extended', 'cheatsheet', 'quiz'],
+    badges: ['Backend', 'Бази даних', 'DevOps', 'System Design'],
   },
   {
     slug: 'react',
@@ -155,5 +175,19 @@ export const ACCENT: Record<
     ring: 'ring-sky-400/40',
     gradient: 'from-sky-500 to-blue-600',
     dot: 'bg-sky-400',
+  },
+  teal: {
+    text: 'text-teal-400',
+    border: 'hover:border-teal-400/60',
+    ring: 'ring-teal-400/40',
+    gradient: 'from-teal-500 to-emerald-600',
+    dot: 'bg-teal-400',
+  },
+  fuchsia: {
+    text: 'text-fuchsia-400',
+    border: 'hover:border-fuchsia-400/60',
+    ring: 'ring-fuchsia-400/40',
+    gradient: 'from-fuchsia-500 to-pink-700',
+    dot: 'bg-fuchsia-400',
   },
 }
