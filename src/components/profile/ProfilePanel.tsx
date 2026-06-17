@@ -39,7 +39,7 @@ export function ProfilePanel() {
       {/* Username */}
       <div className="glass-subtle rounded-xl p-6 space-y-2">
         <label htmlFor="username" className="block text-sm font-medium text-slate-300">
-          Ім'я користувача
+          Ім&apos;я користувача
         </label>
         <input
           id="username"

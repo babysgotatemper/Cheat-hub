@@ -2,6 +2,9 @@
   "name": "cheat-hub",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "dev": "next dev -p 5001",
     "build": "next build",
@@ -24,7 +27,7 @@
     "leetcode-query": "^2.0.1",
     "lucide-react": "^0.395.0",
     "markdown-it": "^14.1.0",
-    "next": "^14.2.0",
+    "next": "^16.2.9",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "sucrase": "^3.35.1",
@@ -38,7 +41,7 @@
     "@types/react-dom": "^19",
     "autoprefixer": "^10.5.0",
     "eslint": "^9",
-    "eslint-config-next": "^14.2.0",
+    "eslint-config-next": "^16.2.9",
     "node-html-parser": "^7.1.0",
     "postcss": "^8.4.0",
     "prisma": "^5.20.0",

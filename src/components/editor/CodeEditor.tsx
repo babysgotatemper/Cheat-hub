@@ -4,7 +4,7 @@ import { useState, useCallback } from 'react'
 import Editor, { type Monaco } from '@monaco-editor/react'
 import { GlassPanel } from '@/components/glass/GlassPanel'
 import { Button } from '@/components/ui/Button'
-import { TestResults } from './TestResults'
+import { TestResults, type TestResult } from './TestResults'
 import { markSolved, markAttempted, addSubmission } from '@/lib/userStore'
 
 interface TestCase {
@@ -43,7 +43,7 @@ export function CodeEditor({ starterCode, testCases, problemSlug }: CodeEditorPr
   const [code, setCode] = useState(starterCode)
   const [language, setLanguage] = useState<Language>('typescript')
   const [isRunning, setIsRunning] = useState(false)
-  const [results, setResults] = useState<any[] | null>(null)
+  const [results, setResults] = useState<TestResult[] | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   const execute = useCallback(

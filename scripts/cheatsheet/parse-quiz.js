@@ -21,7 +21,6 @@ function extractQuestions(file) {
   }
   const arraySrc = html.slice(from, i + 1)
   // eval in a function scope
-  // eslint-disable-next-line no-new-func
   const questions = new Function(`return ${arraySrc}`)()
   return questions
 }

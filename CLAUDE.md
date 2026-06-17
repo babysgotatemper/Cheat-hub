@@ -6,7 +6,7 @@ Local LeetCode-like platform для вирішення задач на JavaScrip
 **Статус:** ✅ MVP готовий до використання
 
 ## Tech Stack
-- **Frontend:** Next.js 14 + TypeScript + React 19
+- **Frontend:** Next.js 16 (Turbopack) + TypeScript + React 19
 - **Styling:** Tailwind CSS v3 + Liquid Glass (custom design system)
 - **UI Components:** Custom Badge, Button + Glass components
 - **Code Editor:** Monaco Editor (@monaco-editor/react)
@@ -122,7 +122,7 @@ Progress {
 
 ```bash
 # Development server
-npm run dev                    # http://localhost:3000
+npm run dev                    # http://localhost:5001
 
 # Database
 npx prisma migrate dev         # Migrate schema
@@ -145,7 +145,7 @@ npm start
 
 ```bash
 # Test code runner
-curl -X POST http://localhost:3000/api/run \
+curl -X POST http://localhost:5001/api/run \
   -H "Content-Type: application/json" \
   -d '{
     "code": "var twoSum = function(nums, target) { ... }",
@@ -231,5 +231,5 @@ rm -rf node_modules package-lock.json && npm install --legacy-peer-deps
 ---
 
 **Created:** May 22, 2026  
-**Last Updated:** May 23, 2026  
-**Platform:** macOS, Node 18.20.8, npm 10.8.2
+**Last Updated:** June 17, 2026  
+**Platform:** macOS, Node 24.16.0, npm 11.13.0

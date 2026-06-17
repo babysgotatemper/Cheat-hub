@@ -1,7 +1,7 @@
 import { GlassCard } from '@/components/glass/GlassCard'
 import { Badge } from '@/components/ui/Badge'
 
-interface TestResult {
+export interface TestResult {
   passed: boolean
   input: string
   expected: string

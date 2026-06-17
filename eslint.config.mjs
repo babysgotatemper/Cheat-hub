@@ -13,6 +13,20 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  // Dev tooling and build config — CommonJS Node scripts, not part of the
+  // app bundle, so the stricter app rules (require(), explicit any) don't apply.
+  {
+    files: [
+      "scripts/**/*.{js,ts}",
+      "*.config.{js,mjs,ts}",
+      "prisma/**/*.{js,ts}",
+    ],
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;

@@ -11,8 +11,11 @@ export function HubShell({ children }: { children: ReactNode }) {
   const [hydrated, setHydrated] = useState(false)
 
   // Read persisted collapse state after mount to avoid hydration mismatch.
+  // Syncing from localStorage post-hydration legitimately requires setState
+  // in an effect, which the cascading-render lint rule flags as a false positive.
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY)
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (stored === 'true') setCollapsed(true)
     setHydrated(true)
   }, [])
