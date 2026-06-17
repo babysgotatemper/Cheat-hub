@@ -49,6 +49,16 @@ export const TOPICS: TopicMeta[] = [
     formats: ['extended', 'cheatsheet'],
   },
   {
+    slug: 'nextjs',
+    title: 'Next.js',
+    icon: '▲',
+    blurb:
+      'App Router, Server Components, рендеринг, кешування та Server Actions поверх React.',
+    accent: 'slate',
+    formats: ['extended', 'cheatsheet'],
+    badges: ['App Router', 'RSC', 'SSR/ISR'],
+  },
+  {
     slug: 'angular',
     title: 'Angular',
     icon: '🅰️',
@@ -189,5 +199,12 @@ export const ACCENT: Record<
     ring: 'ring-fuchsia-400/40',
     gradient: 'from-fuchsia-500 to-pink-700',
     dot: 'bg-fuchsia-400',
+  },
+  slate: {
+    text: 'text-slate-300',
+    border: 'hover:border-slate-300/60',
+    ring: 'ring-slate-300/40',
+    gradient: 'from-slate-500 to-slate-700',
+    dot: 'bg-slate-300',
   },
 }

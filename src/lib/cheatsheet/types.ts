@@ -6,6 +6,7 @@
 export type TopicSlug =
   | 'architecture'
   | 'react'
+  | 'nextjs'
   | 'angular'
   | 'javascript'
   | 'git'
@@ -28,6 +29,7 @@ export type Accent =
   | 'sky'
   | 'teal'
   | 'fuchsia'
+  | 'slate'
 
 export interface TopicMeta {
   slug: TopicSlug
